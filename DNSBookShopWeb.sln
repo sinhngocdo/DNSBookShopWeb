@@ -5,6 +5,12 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DNSBookShopWeb", "DNSBookShopWeb\DNSBookShopWeb.csproj", "{FC4E5300-C4AC-4FFE-8B81-5234EEA77F7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DNSBookShopWeb.DataAccess", "DNSBookShopWeb.DataAccess\DNSBookShopWeb.DataAccess.csproj", "{96281959-1E6A-4EA2-B942-F6541140B49C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DNSBookShopWeb.Models", "DNSBookShopWeb.Models\DNSBookShopWeb.Models.csproj", "{1E7580A6-1719-41B5-BACB-BE35BB261C05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DNSBookShopWeb.Utility", "DNSBookShopWeb.Utility\DNSBookShopWeb.Utility.csproj", "{BBD1688A-44C8-4A73-B88A-73F6BF0E4EAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{FC4E5300-C4AC-4FFE-8B81-5234EEA77F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC4E5300-C4AC-4FFE-8B81-5234EEA77F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC4E5300-C4AC-4FFE-8B81-5234EEA77F7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96281959-1E6A-4EA2-B942-F6541140B49C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96281959-1E6A-4EA2-B942-F6541140B49C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96281959-1E6A-4EA2-B942-F6541140B49C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96281959-1E6A-4EA2-B942-F6541140B49C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E7580A6-1719-41B5-BACB-BE35BB261C05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E7580A6-1719-41B5-BACB-BE35BB261C05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E7580A6-1719-41B5-BACB-BE35BB261C05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E7580A6-1719-41B5-BACB-BE35BB261C05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBD1688A-44C8-4A73-B88A-73F6BF0E4EAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBD1688A-44C8-4A73-B88A-73F6BF0E4EAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBD1688A-44C8-4A73-B88A-73F6BF0E4EAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBD1688A-44C8-4A73-B88A-73F6BF0E4EAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

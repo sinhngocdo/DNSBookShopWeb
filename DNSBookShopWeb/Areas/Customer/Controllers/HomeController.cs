@@ -1,7 +1,9 @@
 using DNSBookShopWeb.DataAccess.Repository.IRepository;
 using DNSBookShopWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace DNSBookShopWeb.Areas.Customer.Controllers
 {
@@ -33,6 +35,34 @@ namespace DNSBookShopWeb.Areas.Customer.Controllers
             };
 
             return View(cart);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Details(ShoppingCart shoppingCart)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            shoppingCart.ApplicationUserId = userId;
+
+            ShoppingCart cartFromDb = _uniOfWork.ShoppingCart.Get(u=> u.ApplicationUserId == userId && u.ProductId == shoppingCart.ProductId);
+
+            if (cartFromDb != null)
+            {
+                //shoppingCart exists
+                cartFromDb.Count += shoppingCart.Count;
+                _uniOfWork.ShoppingCart.Update(cartFromDb);
+            }
+            else
+            {
+                //add a cart
+                _uniOfWork.ShoppingCart.Add(shoppingCart);
+            }
+
+            
+            _uniOfWork.Save();
+
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Privacy()

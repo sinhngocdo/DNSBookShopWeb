@@ -13,12 +13,14 @@ namespace DNSBookShopWeb.DataAccess.Repository
         private ApplicationDbContext _dbContext;
         public ICategoryRepository Category { get; private set; }
         public IProductRepository Product { get; private set; }
+        public ICompanyRepository Company { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
             _dbContext = db;
             Category = new CategoryRepository(_dbContext);
             Product = new ProductRepository(_dbContext);
+            Company = new CompanyRepository(_dbContext);
 
         }
 

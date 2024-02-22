@@ -4,6 +4,7 @@ using DNSBookShopWeb.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DNSBookShopWeb.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240222080226_AddCompanyDatatabeToDb")]
+    partial class AddCompanyDatatabeToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,38 +97,6 @@ namespace DNSBookShopWeb.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            City = "Tech City",
-                            Name = "Tech Solution",
-                            PhoneNumber = "092832212",
-                            PostalCode = "123123",
-                            State = "TS",
-                            StreetAddress = "123 Tect st"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            City = "Info City",
-                            Name = "Information Solution",
-                            PhoneNumber = "093832221",
-                            PostalCode = "123423",
-                            State = "IS",
-                            StreetAddress = "123 Tect st"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            City = "Cech City",
-                            Name = "Cech Solution",
-                            PhoneNumber = "094832231",
-                            PostalCode = "123623",
-                            State = "CS",
-                            StreetAddress = "123 Tect st"
-                        });
                 });
 
             modelBuilder.Entity("DNSBookShopWeb.Models.Product", b =>
@@ -479,9 +450,6 @@ namespace DNSBookShopWeb.DataAccess.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CompanyId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -494,8 +462,6 @@ namespace DNSBookShopWeb.DataAccess.Migrations
 
                     b.Property<string>("StreetAddress")
                         .HasColumnType("nvarchar(max)");
-
-                    b.HasIndex("CompanyId");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -560,15 +526,6 @@ namespace DNSBookShopWeb.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("DNSBookShopWeb.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("DNSBookShopWeb.Models.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId");
-
-                    b.Navigation("Company");
                 });
 #pragma warning restore 612, 618
         }

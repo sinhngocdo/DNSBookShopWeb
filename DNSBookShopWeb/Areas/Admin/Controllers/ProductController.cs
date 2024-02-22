@@ -3,10 +3,13 @@ using DNSBookShopWeb.Models.ViewModels;
 using DNSBookShopWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using DNSBookShopWeb.Utility;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DNSBookShopWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

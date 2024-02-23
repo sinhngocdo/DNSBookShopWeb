@@ -58,8 +58,9 @@ namespace DNSBookShopWeb.Areas.Customer.Controllers
                 //add a cart
                 _uniOfWork.ShoppingCart.Add(shoppingCart);
             }
+            TempData["success"] = "Cart updated successfully";
 
-            
+
             _uniOfWork.Save();
 
             return RedirectToAction(nameof(Index));

@@ -123,7 +123,7 @@ namespace DNSBookShopWeb.Areas.Customer.Controllers
                 _unitOfWork.Save();
             }
 
-            return View(ShoppingCartVM);
+            return View(ShoppingCartVM); 
         }
 
 

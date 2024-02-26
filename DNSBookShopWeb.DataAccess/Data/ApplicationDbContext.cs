@@ -17,6 +17,8 @@ namespace DNSBookShopWeb.DataAccess.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<OrderHeader> orderHeaders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DNSBookShopWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class OrderController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

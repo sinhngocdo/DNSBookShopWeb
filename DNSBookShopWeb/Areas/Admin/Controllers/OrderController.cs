@@ -1,5 +1,6 @@
 ﻿using DNSBookShopWeb.DataAccess.Repository.IRepository;
 using DNSBookShopWeb.Models;
+using DNSBookShopWeb.Models.ViewModels;
 using DNSBookShopWeb.Utility;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -20,6 +21,20 @@ namespace DNSBookShopWeb.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public IActionResult Details(int orderId)
+        {
+            OrderVM orderVM = new()
+            {
+                OrderHeader = _unitOfWork.OrderHeader.Get(u => u.Id == orderId, includeProperties: "ApplicationUser"),
+                OrderDetail = _unitOfWork.OrderDetail.GetAll(u => u.OrderHeaderId == orderId, includeProperties: "Product")
+            };
+
+
+            return View(orderVM);
+        }
+
+
 
         #region API CALLS
         [HttpGet]

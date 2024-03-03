@@ -23,6 +23,9 @@ namespace DNSBookShopWeb.Utility
         public const string PaymentStatusPending = "Pending";
         public const string PaymentStatusApproved = "Approved";
         public const string PaymentStatusDelayedPayment = "PaymentStatusDelayedPayment";
-        public const string PaymentStatusRejected = "PaymentStatusRejected";
+        public const string PaymentStatusRejected = "Rejected";
+
+        public const string SessionCart = "SessionShoppingCart";
+
     }
 }

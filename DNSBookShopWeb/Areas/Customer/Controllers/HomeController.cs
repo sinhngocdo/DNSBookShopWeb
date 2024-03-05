@@ -1,3 +1,4 @@
+using DNSBookShopWeb.DataAccess.Repository;
 using DNSBookShopWeb.DataAccess.Repository.IRepository;
 using DNSBookShopWeb.Models;
 using DNSBookShopWeb.Utility;
@@ -23,6 +24,14 @@ namespace DNSBookShopWeb.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            if (claim != null)
+            {
+                HttpContext.Session.SetInt32(SD.SessionCart,
+                _uniOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).Count());
+            }
             IEnumerable<Product> productList = _uniOfWork.Product.GetAll(includeProperties: "Category");
             return View(productList);
         }

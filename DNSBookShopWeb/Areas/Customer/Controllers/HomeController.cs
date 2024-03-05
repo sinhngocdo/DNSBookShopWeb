@@ -14,25 +14,18 @@ namespace DNSBookShopWeb.Areas.Customer.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IUnitOfWork _uniOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
         public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
-            _uniOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            var claimsIdentity = (ClaimsIdentity)User.Identity;
-            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-
-            if (claim != null)
-            {
-                HttpContext.Session.SetInt32(SD.SessionCart,
-                _uniOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).Count());
-            }
-            IEnumerable<Product> productList = _uniOfWork.Product.GetAll(includeProperties: "Category");
+            
+            IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category");
             return View(productList);
         }
 
@@ -40,7 +33,7 @@ namespace DNSBookShopWeb.Areas.Customer.Controllers
         {
             ShoppingCart cart = new()
             {
-                Product = _uniOfWork.Product.Get(u => u.Id == productId, includeProperties: "Category"),
+                Product = _unitOfWork.Product.Get(u => u.Id == productId, includeProperties: "Category"),
                 Count = 1,
                 ProductId = productId
             };
@@ -56,22 +49,22 @@ namespace DNSBookShopWeb.Areas.Customer.Controllers
             var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
             shoppingCart.ApplicationUserId = userId;
 
-            ShoppingCart cartFromDb = _uniOfWork.ShoppingCart.Get(u=> u.ApplicationUserId == userId && u.ProductId == shoppingCart.ProductId);
+            ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get(u=> u.ApplicationUserId == userId && u.ProductId == shoppingCart.ProductId);
 
             if (cartFromDb != null)
             {
                 //shoppingCart exists
                 cartFromDb.Count += shoppingCart.Count;
-                _uniOfWork.ShoppingCart.Update(cartFromDb);
-                _uniOfWork.Save();
+                _unitOfWork.ShoppingCart.Update(cartFromDb);
+                _unitOfWork.Save();
             }
             else
             {
                 //add a cart
-                _uniOfWork.ShoppingCart.Add(shoppingCart);
-                _uniOfWork.Save();
+                _unitOfWork.ShoppingCart.Add(shoppingCart);
+                _unitOfWork.Save();
                 HttpContext.Session.SetInt32(SD.SessionCart, 
-                    _uniOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId).Count());
+                    _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId).Count());
             }
             TempData["success"] = "Cart updated successfully";
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DNSBookShopWeb.DataAccess.DbInitializor
 {
-    public interface IDbInitializor
+    public interface IDbInitializer
     {
         void Initialize();
     }

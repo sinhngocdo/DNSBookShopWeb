@@ -32,7 +32,7 @@ namespace DNSBookShopWeb.Utility
             using(var emailClient = new SmtpClient())
             {
                 emailClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-                emailClient.Authenticate("DNSBookShopWeb@gmail.com", "qjgg jerm dsai cnhh");
+                emailClient.Authenticate("sinh2001nd2801@gmail.com", "wvdd hknl kdcq ywor");
                 emailClient.Send(emailToSend);
                 emailClient.Disconnect(true);
             }

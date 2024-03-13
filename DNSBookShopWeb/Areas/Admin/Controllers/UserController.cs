@@ -73,7 +73,7 @@ namespace DNSBookShopWeb.Areas.Admin.Controllers
             }
             _dbContext.SaveChanges();
 
-            return Json(new { success = true, message = "Delete successful " });
+            return Json(new { success = true, message = "Operation successful " });
         }
         #endregion
     }

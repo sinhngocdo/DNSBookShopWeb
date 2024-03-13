@@ -32,10 +32,10 @@ namespace DNSBookShopWeb.DataAccess.Repository
                 objFromDb.ListPrice = obj.ListPrice;
                 objFromDb.Author = obj.Author;
                 objFromDb.CategoryId = obj.CategoryId;
-                if (objFromDb.ImageUrl != null)
-                {
-                    objFromDb.ImageUrl = obj.ImageUrl;
-                }
+                //if (objFromDb.ImageUrl != null)
+                //{
+                //    objFromDb.ImageUrl = obj.ImageUrl;
+                //}
             }
         }
     }

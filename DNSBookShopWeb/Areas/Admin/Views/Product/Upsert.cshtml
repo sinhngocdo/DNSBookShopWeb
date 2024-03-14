@@ -57,10 +57,10 @@
                             <label asp-for="Product.Price100" class="ms-2"></label>
                             <span asp-validation-for="Product.Price100" class="text-danger"></span>
                         </div>
-                        @* <div class="form-floating py-2 col-12">
-                            <input type="file" name="file" class="form-control border-0 shadow" />
-                            <label asp-for="Product.ImageUrl" class="ms-2"></label>
-                        </div> *@
+                        <div class="form-floating py-2 col-12">
+                            <input type="file" name="files" class="form-control border-0 shadow" multiple />
+                            <label asp-for="Product.ProductImages" class="ms-2"></label>
+                        </div>
                         <div class="form-floating py-2 col-12">
                             <select asp-for="Product.CategoryId" asp-items="@Model.CategoryList" class="form-select border-0 shadow">
                                 <option disabled selected>Select Category</option>
@@ -91,6 +91,18 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-2">
+                    @if (Model.Product.ProductImages != null)
+                    {
+                        foreach (var productImage in Model.Product.ProductImages)
+                        {
+                            <div class="border p-1 m-2 text-center">
+                                <img src="@productImage.ImageUrl" width="100%" 
+                                style="border-radius:5px; border:1px solid #bbb9b9" /> 
+                            </div>
+                        }
+                    }
                 </div>
             </div>
 

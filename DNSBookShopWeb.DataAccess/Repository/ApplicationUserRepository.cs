@@ -18,5 +18,10 @@ namespace DNSBookShopWeb.DataAccess.Repository
         {
             _dbContext = db;
         }
+
+        public void Update(ApplicationUser applicationUser)
+        {
+            _dbContext.ApplicationUsers.Update(applicationUser);
+        }
     }
 }

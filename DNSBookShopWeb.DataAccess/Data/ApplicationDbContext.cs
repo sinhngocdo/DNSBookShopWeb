@@ -1,10 +1,11 @@
 ﻿using DNSBookShopWeb.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DNSBookShopWeb.DataAccess.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -13,6 +14,8 @@ namespace DNSBookShopWeb.DataAccess.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Company> Companies { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,6 +25,32 @@ namespace DNSBookShopWeb.DataAccess.Data
                 new Category() { Id = 1, Name = "Action", DisplayOrder = 1 },
                 new Category() { Id = 2, Name = "SciFi", DisplayOrder = 2 },
                 new Category() { Id = 3, Name = "History", DisplayOrder = 3 }
+            );
+
+            modelBuilder.Entity<Company>().HasData(
+                new Company() { 
+                    Id = 1, 
+                    Name = "Tech Solution", 
+                    StreetAddress="123 Tect st", 
+                    City="Tech City", State="TS", 
+                    PostalCode="123123", 
+                    PhoneNumber="092832212"},
+                new Company() { 
+                    Id = 2, 
+                    Name = "Information Solution", 
+                    StreetAddress = "123 Tect st", 
+                    City = "Info City", 
+                    State = "IS", 
+                    PostalCode = "123423", 
+                    PhoneNumber = "093832221" },
+                new Company() { 
+                    Id = 3, 
+                    Name = "Cech Solution", 
+                    StreetAddress = "123 Tect st", 
+                    City = "Cech City", 
+                    State = "CS", 
+                    PostalCode = "123623", 
+                    PhoneNumber = "094832231" }
             );
 
             modelBuilder.Entity<Product>().HasData(

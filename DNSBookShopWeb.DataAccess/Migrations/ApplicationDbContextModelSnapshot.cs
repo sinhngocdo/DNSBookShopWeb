@@ -570,6 +570,7 @@ namespace DNSBookShopWeb.DataAccess.Migrations
 
                     b.Navigation("Company");
                 });
+
 #pragma warning restore 612, 618
         }
     }

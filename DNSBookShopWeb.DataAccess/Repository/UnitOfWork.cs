@@ -25,7 +25,6 @@ namespace DNSBookShopWeb.DataAccess.Repository
         }
 
 
-
         public void Save()
         {
             _dbContext.SaveChanges();
